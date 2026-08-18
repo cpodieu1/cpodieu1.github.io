@@ -1,27 +1,798 @@
+# `index.html`
+
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Christiel Podieu ePortfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Christiel Podieu | Computer Science ePortfolio</title>
+
+    <meta name="description"
+          content="Christiel Podieu's CS-499 Computer Science Professional ePortfolio showcasing software engineering, algorithms and data structures, and database development.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f4f7fb;
+        }
+
+        /* Navigation */
+
+        nav {
+            background: #0f172a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        /* Hero */
+
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: white;
+            padding: 100px 25px;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            background: white;
+            color: #1e3a8a;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background: #dbeafe;
+        }
+
+        /* Main */
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 25px;
+        }
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .section-intro {
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            color: #4b5563;
+        }
+
+        /* About */
+
+        .about {
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Skills */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #2563eb;
+        }
+
+        .skill-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        .skill-card ul {
+            padding-left: 20px;
+        }
+
+        .skill-card li {
+            margin-bottom: 8px;
+        }
+
+        /* Artifact */
+
+        .artifact {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .artifact h3 {
+            font-size: 1.7rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .artifact-label {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .artifact-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature {
+            background: #f8fafc;
+            padding: 18px;
+            border-radius: 6px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .artifact-links {
+            margin-top: 25px;
+        }
+
+        .artifact-button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .artifact-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Portfolio Navigation */
+
+        .portfolio-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .portfolio-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .portfolio-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-card a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .portfolio-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 800px) {
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .artifact-features {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Christiel Podieu</h1>
 
-    <h2>Computer Science ePortfolio</h2>
+<!-- Navigation -->
 
-    <p>Welcome to my CS 499 ePortfolio.</p>
+<nav>
+    <div class="nav-container">
 
-    <p>This portfolio showcases my software development projects and demonstrates my skills in:</p>
+        <a href="index.html" class="logo">
+            Christiel Podieu
+        </a>
 
-    <ul>
-        <li>Software Design and Engineering</li>
-        <li>Algorithms and Data Structures</li>
-        <li>Databases</li>
-    </ul>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="self-assessment.html">Self-Assessment</a></li>
+            <li><a href="code-review.html">Code Review</a></li>
+            <li><a href="artifact.html">Artifact</a></li>
+            <li><a href="narrative.html">Narrative</a></li>
+        </ul>
 
-    <h3>Featured Project</h3>
+    </div>
+</nav>
 
-    <p>Android Inventory Management Application (CS-360)</p>
 
-    <p>Thank you for visiting!</p>
+<!-- Hero -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <h1>Christiel Podieu</h1>
+
+        <h2>Computer Science Professional ePortfolio</h2>
+
+        <p>
+            Welcome to my CS-499 Professional ePortfolio. This portfolio
+            demonstrates my growth throughout the Computer Science program
+            and showcases my skills in software design and engineering,
+            algorithms and data structures, and database development.
+        </p>
+
+        <a href="artifact.html" class="button">
+            Explore My Work
+        </a>
+
+        <a href="self-assessment.html" class="button">
+            Professional Self-Assessment
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- About -->
+
+    <section>
+
+        <h2 class="section-title">
+            About This Portfolio
+        </h2>
+
+        <div class="about">
+
+            <p>
+                This ePortfolio presents selected work from my Computer
+                Science program and demonstrates how I have developed my
+                technical and problem-solving abilities through software
+                development projects.
+            </p>
+
+            <br>
+
+            <p>
+                My featured artifact is an Android Inventory Management
+                Application originally developed as part of my coursework.
+                For the CS-499 capstone, I am enhancing the application
+                to demonstrate growth in software engineering, algorithms
+                and data structures, and database development.
+            </p>
+
+            <br>
+
+            <p>
+                The portfolio presents both the original and enhanced
+                versions of the artifact so that my development process,
+                technical decisions, and learning can be clearly evaluated.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Core Skills -->
+
+    <section>
+
+        <h2 class="section-title">
+            Core Computer Science Skills
+        </h2>
+
+        <p class="section-intro">
+            The following three areas represent the primary technical
+            categories demonstrated through my CS-499 artifact.
+        </p>
+
+        <div class="skills">
+
+            <div class="skill-card">
+
+                <h3>
+                    Software Design & Engineering
+                </h3>
+
+                <ul>
+                    <li>Android application development</li>
+                    <li>Java programming</li>
+                    <li>MVVM architecture</li>
+                    <li>Object-oriented programming</li>
+                    <li>Application validation</li>
+                    <li>Error handling</li>
+                    <li>Software testing</li>
+                    <li>UI/UX improvement</li>
+                </ul>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>
+                    Algorithms & Data Structures
+                </h3>
+
+                <ul>
+                    <li>Searching</li>
+                    <li>Sorting</li>
+                    <li>Filtering</li>
+                    <li>Collections</li>
+                    <li>Inventory calculations</li>
+                    <li>Efficient data processing</li>
+                    <li>Algorithmic problem solving</li>
+                    <li>Complexity analysis</li>
+                </ul>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>
+                    Databases
+                </h3>
+
+                <ul>
+                    <li>SQLite</li>
+                    <li>Android Room</li>
+                    <li>Database entities</li>
+                    <li>DAO development</li>
+                    <li>CRUD operations</li>
+                    <li>Database queries</li>
+                    <li>Database migrations</li>
+                    <li>Data persistence</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Featured Artifact -->
+
+    <section>
+
+        <h2 class="section-title">
+            Featured Artifact
+        </h2>
+
+        <div class="artifact">
+
+            <span class="artifact-label">
+                CS-360 / CS-499 Capstone
+            </span>
+
+            <h3>
+                Android Inventory Management Application
+            </h3>
+
+            <p>
+                The Inventory Management Application is an Android
+                application designed to allow users to manage inventory
+                items through a persistent local database.
+            </p>
+
+            <br>
+
+            <p>
+                The original application provides a foundation for
+                demonstrating Android development, object-oriented
+                programming, database persistence, and application
+                architecture. The CS-499 enhancement expands these
+                capabilities to demonstrate more advanced computer
+                science skills.
+            </p>
+
+
+            <div class="artifact-features">
+
+                <div class="feature">
+                    <strong>Original Artifact</strong>
+                    <br>
+                    The original CS-360 Inventory Management application.
+                </div>
+
+                <div class="feature">
+                    <strong>Enhanced Artifact</strong>
+                    <br>
+                    The improved CS-499 version with additional functionality,
+                    validation, database improvements, and algorithmic features.
+                </div>
+
+                <div class="feature">
+                    <strong>Software Engineering</strong>
+                    <br>
+                    Improved architecture, validation, testing, and
+                    maintainability.
+                </div>
+
+                <div class="feature">
+                    <strong>Algorithms & Data Structures</strong>
+                    <br>
+                    Searching, sorting, filtering, and inventory analysis.
+                </div>
+
+                <div class="feature">
+                    <strong>Database Development</strong>
+                    <br>
+                    Room database improvements, queries, persistence,
+                    and database migration.
+                </div>
+
+                <div class="feature">
+                    <strong>Security & Quality</strong>
+                    <br>
+                    Improved validation, error handling, and application
+                    reliability.
+                </div>
+
+            </div>
+
+
+            <div class="artifact-links">
+
+                <a href="artifact.html" class="artifact-button">
+                    View Artifact
+                </a>
+
+                <a href="narrative.html" class="artifact-button">
+                    Read Artifact Narrative
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Portfolio Pages -->
+
+    <section>
+
+        <h2 class="section-title">
+            Explore My Portfolio
+        </h2>
+
+        <p class="section-intro">
+            Use the sections below to explore my professional development,
+            code review, artifact enhancements, and reflections.
+        </p>
+
+
+        <div class="portfolio-links">
+
+            <div class="portfolio-card">
+
+                <h3>
+                    Professional Self-Assessment
+                </h3>
+
+                <p>
+                    A reflection on my growth throughout the Computer
+                    Science program, technical skills, professional goals,
+                    communication, teamwork, and preparation for a career
+                    in technology.
+                </p>
+
+                <br>
+
+                <a href="self-assessment.html">
+                    View Self-Assessment →
+                </a>
+
+            </div>
+
+
+            <div class="portfolio-card">
+
+                <h3>
+                    Code Review
+                </h3>
+
+                <p>
+                    A walkthrough of the original Inventory Management
+                    application, areas identified for improvement, and
+                    the planned CS-499 enhancements.
+                </p>
+
+                <br>
+
+                <a href="code-review.html">
+                    View Code Review →
+                </a>
+
+            </div>
+
+
+            <div class="portfolio-card">
+
+                <h3>
+                    Technical Artifact
+                </h3>
+
+                <p>
+                    Explore the original and enhanced versions of the
+                    Android Inventory Management application and the
+                    technical improvements implemented during the capstone.
+                </p>
+
+                <br>
+
+                <a href="artifact.html">
+                    View Artifact →
+                </a>
+
+            </div>
+
+
+            <div class="portfolio-card">
+
+                <h3>
+                    Artifact Narrative
+                </h3>
+
+                <p>
+                    A reflection on why the artifact was selected, what
+                    was learned during the enhancement process, challenges
+                    encountered, and how the enhancements demonstrate
+                    course outcomes.
+                </p>
+
+                <br>
+
+                <a href="narrative.html">
+                    View Narrative →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Technology -->
+
+    <section>
+
+        <h2 class="section-title">
+            Technologies
+        </h2>
+
+        <div class="about">
+
+            <p>
+                <strong>Programming:</strong>
+                Java
+            </p>
+
+            <p>
+                <strong>Mobile Development:</strong>
+                Android Studio, Android SDK
+            </p>
+
+            <p>
+                <strong>Architecture:</strong>
+                MVVM, Repository Pattern, ViewModel
+            </p>
+
+            <p>
+                <strong>Database:</strong>
+                SQLite, Room Persistence Library
+            </p>
+
+            <p>
+                <strong>Development Tools:</strong>
+                Git, GitHub, Gradle
+            </p>
+
+            <p>
+                <strong>Testing:</strong>
+                JUnit and Android testing frameworks
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Career -->
+
+    <section>
+
+        <h2 class="section-title">
+            Professional Goals
+        </h2>
+
+        <div class="about">
+
+            <p>
+                My goal is to continue developing as a technology
+                professional by applying my computer science foundation
+                to software engineering, cloud computing, automation,
+                security, and modern infrastructure.
+            </p>
+
+            <br>
+
+            <p>
+                The skills demonstrated in this portfolio provide a
+                foundation for designing reliable software, working with
+                data, solving complex technical problems, and continuing
+                to develop professionally throughout my career.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Footer -->
+
+<footer>
+
+    <p>
+        <strong>Christiel Podieu</strong>
+    </p>
+
+    <p>
+        Computer Science Professional ePortfolio
+    </p>
+
+    <p>
+        CS-499 Capstone
+    </p>
+
+    <p>
+        © 2026 Christiel Podieu
+    </p>
+
+</footer>
+
 </body>
 </html>
+```
